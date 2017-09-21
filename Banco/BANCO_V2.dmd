@@ -1,8 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="BANCO_V2" id="4F2859E8-CC6D-0AAC-322D-5406820EC2FB" version="3.5">
-<createdBy>logonpf</createdBy>
-<createdTime>2017-03-20 12:16:43 UTC</createdTime>
-<ownerDesignName>AULA03 - EXERC01 - PROJETOS</ownerDesignName>
-<capitalNames>false</capitalNames>
-<designId>4F2859E8-CC6D-0AAC-322D-5406820EC2FB</designId>
-</OSDM_Design>
