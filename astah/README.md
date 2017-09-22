@@ -1,1 +1,1 @@
-# Depositar aqui os arquivos .astah
+# Depositar aqui os arquivos .asta
