@@ -1,0 +1,38 @@
+  TABLE T_VFC_ITEM_NOTA_FISCAL
+  (
+    cd_item           NUMBER (3) NOT NULL ,
+    nr_nota_fiscal    NUMBER (6) NOT NULL ,
+    cd_produto        NUMBER (6) NOT NULL ,
+    qt_vendida        NUMBER (3) NOT NULL ,
+    vl_preco_unitario NUMBER (6,2) NOT NULL
+  ) ;
+
+
+
+  CREATE TABLE T_VFC_PRODUTO
+  (
+    cd_produto          NUMBER (5)  NOT NULL ,
+    ds_produto          VARCHAR2 (20) NOT NULL ,
+    ds_completa_produto VARCHAR2 (128) NOT NULL ,
+    qt_estoque          NUMBER (4) NOT NULL ,
+    vl_unitario         NUMBER (6,2) NOT NULL ,
+    vl_volume           NUMBER NOT NULL ,
+    vl_peso             DECIMAL NOT NULL ,
+    ds_tempo_producao   NUMBER NOT NULL
+   
+  ) ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
