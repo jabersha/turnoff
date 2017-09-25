@@ -1,5 +1,6 @@
 /*
   Relatório Mensal de Vendas, ordenados por produtos mais vendidos.
+  Este código retorna a somatória de Quantidade em estoque de produto com Quantidade Vendida de Item Nota Fiscal
 */
 
 SELECT  INF.cd_item,
