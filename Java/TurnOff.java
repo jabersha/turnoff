@@ -327,11 +327,7 @@ public class TurnOff {
 
 	public static int descPrazo (int qtTotal) {
 		if (qtTotal >50 && qtTotal <=90 ) {  //  Se a quantidade total de produtos for igual ou maior que 10
-			return -2;        //  Retorna 10% de desconto/reajuste
-		}else if(qtTotal>90 && qtTotal<=150 ) {
-			return -3;
-		}else if(qtTotal>150) {
-			return -4;
+			return -1;        //  Retorna 10% de desconto/reajuste
 		}
 
 		return 0;
