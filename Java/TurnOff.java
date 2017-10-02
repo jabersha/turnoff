@@ -333,7 +333,11 @@ public class TurnOff {
 		return 0;
 
 	}
-
-
+	/*TurnOff
+	Vitor da Silva Souza - 76469
+	Jaber Shamali - 79155
+	Leandro Bragante - 78511
+	Lucas Rodrigues - 7922
+	Felipe Yudi - 79456*/
 
 }
