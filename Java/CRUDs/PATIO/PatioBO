@@ -1,0 +1,37 @@
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import br.com.tsystem.fiap.beans.Patio;
+import br.com.tsystem.fiap.dao.PatioDAO;
+
+public class PatioBO {
+
+	public static String inserir(Patio pat) throws Exception{
+		PatioDAO dao = new PatioDAO();
+		String msg = dao.inserir(pat);
+		dao.fechar();
+		return msg;
+	}
+	
+	public static int excluir(int codigo) throws Exception{
+		PatioDAO dao = new PatioDAO();
+		int x = dao.excluir(codigo);
+		dao.fechar();
+		return x;
+	}
+	
+	public static int alterar(int codigo, int atual, int max) throws Exception{
+		PatioDAO dao = new PatioDAO();
+		int x = dao.alterar(codigo, atual, max);
+		dao.fechar();
+		return x;
+	}
+	public static List<Patio> consulta(int codigo) throws Exception{
+		PatioDAO dao = new PatioDAO();
+		List<Patio> lista = dao.consulta(codigo);
+		dao.fechar();
+		return lista;
+	}
+	
+}
