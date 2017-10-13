@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="images/icon_t-systems.png" sizes="64x64">
+  <!-- CSS-->
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/slider.css">
+  <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+  <!-- Font-icon css-->
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Sales</title>
+</head>
+
+<body class="sidebar-mini fixed">
+  <div class="wrapper">
+    <!-- Navbar-->
+    <header class="main-header hidden-print"><a class="logo" href="index.html"><img src="images/logo_t-systems.png" width="130px" alt="Logotipo T-Systems"></a>
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button--><a class="sidebar-toggle" href="#" data-toggle="offcanvas"></a>
+        <!-- Navbar Right Menu-->
+        <div class="navbar-custom-menu">
+          <ul class="top-nav">
+            <!--Notification Menu-->
+            <li class="dropdown notification-menu"><a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell-o fa-lg"></i></a>
+              <ul class="dropdown-menu">
+                <li class="not-head">You have 4 new notifications.</li>
+                <li><a class="media" href="javascript:;"><span class="media-left media-icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+                      <div class="media-body"><span class="block">Lisa sent you a mail</span><span class="text-muted block">2min ago</span></div></a></li>
+                <li><a class="media" href="javascript:;"><span class="media-left media-icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
+                      <div class="media-body"><span class="block">Server Not Working</span><span class="text-muted block">2min ago</span></div></a></li>
+                <li><a class="media" href="javascript:;"><span class="media-left media-icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
+                      <div class="media-body"><span class="block">Transaction xyz complete</span><span class="text-muted block">2min ago</span></div></a></li>
+                <li class="not-footer"><a href="#">See all notifications.</a></li>
+              </ul>
+            </li>
+            <!-- User Menu-->
+            <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg"></i></a>
+              <ul class="dropdown-menu settings-menu">
+                <li><a href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
+                <li><a href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
+                <li><a href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- Side-Nav-->
+    <aside class="main-sidebar hidden-print">
+      <section class="sidebar">
+        <div class="user-panel">
+          <div class="pull-left image"><img class="img-circle" src="images/user.png" alt="User Image"></div>
+          <div class="pull-left info">
+            <p>John Doe</p>
+            <p class="designation">Frontend Developer</p>
+          </div>
+        </div>
+        <!-- Sidebar Menu-->
+        <ul class="sidebar-menu">
+          <li class="active"><a href="sales.html"><i class="fa fa-home"></i><span>Sales Home</span></a></li>
+          <li><a href="#"><i class="fa fa-pie-chart"></i><span>Reports</span></a></li>
+          <li><a href="#"><i class="fa fa-history"></i><span>Historic</span></a></li>
+          <li><a href="#"><i class="fa fa-gear"></i><span>Settings</span></a></li>
+        </ul>
+      </section>
+    </aside>
+    <div class="content-wrapper">
+      <div class="page-title">
+        <div>
+          <h1><i class="fa fa-shopping-cart"></i> Sales</h1>
+          <p>Request Your Beacons</p>
+        </div>
+        <div>
+          <ul class="breadcrumb">
+            <li><i class="fa fa-home fa-lg"></i></li>
+            <li><a href="#">Sales</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 animated bounceIn">
+          <div class="card">
+            <div class="slider" id="slider">
+              <div class="slItems">
+                <div class="slItem" style="background-image: url('images/beacon-1.png');"></div>
+                <div class="slItem" style="background-image: url('images/beacon-2.png');"></div>
+                <div class="slItem" style="background-image: url('images/beacon-3.png');"></div>
+                <div class="slItem" style="background-image: url('images/beacon-4.png');"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-5 animated bounceIn">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Select products</h3>
+              <form>
+                <div class="row mb-20">
+                  <div class="col-md-4">
+                    <label>Blue</label>
+                    <input class="form-control" type="number" placeholder="Blue Quantity">
+                  </div>
+                  <div class="col-md-4">
+                    <label>Magenta</label>
+                    <input class="form-control" type="number" placeholder="Blue Quantity">
+                  </div>
+                  <div class="col-md-4">
+                    <label>White</label>
+                    <input class="form-control" type="number" placeholder="White Quantity">
+                  </div>
+                </div>
+
+                <div class="card-footer">
+                  <button class="btn btn-primary icon-btn" type="button"><i class="fa fa-fw fa-lg fa-cart-plus"></i>Confirm Order</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-5 animated bounceIn">
+          <div class="card">
+            <h3 class="card-title">Product Details</h3>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Description</th>
+                  <th>Volume</th>
+                  <th>Weight</th>
+                  <th>Unit price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Beacon Blue</td>
+                  <td>10</td>
+                  <td>10</td>
+                  <td>10,00</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Beacon Magenta</td>
+                  <td>10</td>
+                  <td>10</td>
+                  <td>10,00</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Beacon White</td>
+                  <td>10</td>
+                  <td>10</td>
+                  <td>10,00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+        <!-- Check out -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Javascripts-->
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/plugins/pace.min.js"></script>
+  <script src="js/main.js"></script>
+  <!-- Javascript do Slider-->
+  <script src="js/plugins/slider.min.js"></script>
+  <script>
+    $(function() {
+      $('#slider').rbtSlider({
+        height: '62vh',
+        'dots': true,
+        'arrows': true,
+        'auto': 3
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>

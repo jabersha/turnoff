@@ -1,0 +1,97 @@
+.main-header .logo {
+  background-color: #e20074;
+}
+
+.number-cart {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 8px 5px;
+  line-height: 0;
+  font-size: 11px;
+  background: #192642;
+  color: #fff;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.jumbotron {
+  color: #eee;
+  height: 450px; /* alterou */
+  margin-top: 50px;
+  padding: 100px 0;
+}
+
+.display-3, .lead {
+  text-shadow: 0.5px 0.5px 0.5px #000;
+}
+
+.secao-pesquisa {
+  background-color: #c9ccd5;
+  padding: 20px;
+}
+
+.secao-produtos {
+  background-color: #e5e5e5;
+  padding: 50px 0;
+}
+
+.secao-produto-desmontado {
+  background-color: #c60065;
+  padding: 50px 0;
+}
+
+.secao-produto-desmontado img {
+  max-width: 95%;
+}
+
+#ecommerce-footer {
+  background-color: #192642;
+  color: #fff;
+  padding: 7em 0;
+  clear: both;
+}
+
+#ecommerce-footer .ecommerce-footer-links {
+  padding: 0;
+  margin: 0;
+}
+
+#ecommerce-footer .ecommerce-footer-links li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#ecommerce-footer .ecommerce-footer-links li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#ecommerce-footer .ecommerce-footer-links li a:hover {
+  text-decoration: underline;
+}
+
+#ecommerce-footer .ecommerce-widget {
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  #ecommerce-footer .ecommerce-widget {
+    text-align: left;
+  }
+}
+
+#ecommerce-footer .ecommerce-widget h3 {
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#ecommerce-footer .copyright .block {
+  display: block;
+}
