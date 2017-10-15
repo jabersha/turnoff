@@ -1,5 +1,7 @@
 package br.com.fiap.bo;
 
+import java.util.List;
+
 import br.com.fiap.bean.Bairro;
 import br.com.fiap.dao.BairroDAO;
 
@@ -25,9 +27,16 @@ public class BairroBO {
 		return x;
 	}
 	
-	public static Bairro consultar(int numero) throws Exception {
+	public static List<Bairro> consultarPorCodigo(int numero) throws Exception {
 		BairroDAO dao = new BairroDAO();
-		Bairro x = dao.consultar(numero);
+		List<Bairro> x = dao.consultarPorCodigo(numero);
+		dao.fechar();
+		return x;
+	}
+	
+	public static List<Bairro> consultarPorCodigoCidade(int numero) throws Exception {
+		BairroDAO dao = new BairroDAO();
+		List<Bairro> x = dao.consultaPorCodigoCidade(numero);
 		dao.fechar();
 		return x;
 	}
