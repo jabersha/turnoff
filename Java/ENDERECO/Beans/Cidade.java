@@ -6,6 +6,20 @@ public class Cidade {
 	private int cd_cidade;
 	private String nm_cidade;
 	private int cd_estado;
+	private List<Estado> listaEstado;
+	
+	public Cidade() {
+		
+	}
+	
+	
+	public Cidade(int cd_cidade, int cd_estado, String nm_cidade, List<Estado> listaEstado) {
+		super();
+		this.cd_cidade = cd_cidade;
+		this.nm_cidade = nm_cidade;
+		this.listaEstado = listaEstado;
+	}
+	
 	public int getCd_estado() {
 		return cd_estado;
 	}
@@ -15,19 +29,7 @@ public class Cidade {
 		this.cd_estado = cd_estado;
 	}
 
-	private List<Estado> listaEstado;
 	
-	public Cidade() {
-
-	}
-	
-
-	public Cidade(int cd_cidade, int cd_estado, String nm_cidade, List<Estado> listaEstado) {
-		super();
-		this.cd_cidade = cd_cidade;
-		this.nm_cidade = nm_cidade;
-		this.listaEstado = listaEstado;
-	}
 
 
 	public List<Estado> getListaEstado() {
