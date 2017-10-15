@@ -9,61 +9,36 @@ import java.util.List;
 import br.com.fiap.bean.Estado;
 import br.com.fiap.bean.Tipo_Log;
 import br.com.fiap.conexao.ConexaoFactory;
-
+/**
+ * Esta classe
+ * @author Vitor
+ * @since 14-10-2017
+ *
+ */
 public class EstadoDAO {
 	private Connection con;
-	
+	/**
+	 * Este metodo realiza a conexao com SQL via classe ConexaoFactory pelo método Conectar
+	 * @throws Exception
+	 */
 	public EstadoDAO() throws Exception {
 		con = new ConexaoFactory().Conectar();
 	}
-	
+	/**
+	 * O seguinte metodo fecha a conexao do banco de dados
+	 * @return
+	 * @throws Exception
+	 */
 	public String fechar() throws Exception {
 		con.close();
 		return "Fechado";
 	}
-	
-	public String insert(Estado e) throws Exception {
-		PreparedStatement ps = con.prepareStatement
-		("INSERT INTO T_VFC_ESTADO(cd_estado, nm_estado, ds_sigla)"
-		+"VALUES (?,?,?)");
-		ps.setInt(1, e.getCd_estado());
-//		ps.setInt(1, cd_estado);
-		ps.setString(2, e.getNm_estado());
-		ps.setString(3, e.getDs_sigla());
-		ps.executeUpdate();
-		ps.close();
-		
-		return "Inserido com sucesso!";
-	}
-
-			
-	public String atualizar(Estado e) throws Exception {
-		PreparedStatement ps = con.prepareStatement
-		("UPDATE T_VFC_ESTADO SET nm_estado = ?, ds_sigla = ?"
-		+ "WHERE cd_estado = ?");
-		ps.setString(1, e.getNm_estado());
-		ps.setString(2, e.getDs_sigla());
-		ps.setInt(3, e.getCd_estado());
-		
-		ps.execute();
-		
-		int x = ps.executeUpdate();
-		ps.close();
-		return x + " Linhas alteradas!";
-	}
-	
-	public String excluir(Estado e) throws Exception {
-		PreparedStatement ps = con.prepareStatement
-		("DELETE FROM T_VFC_ESTADO WHERE cd_estado = ?");
-		ps.setInt(1, e.getCd_estado());
-		
-		ps.execute();
-		ps.close();
-		
-		return "Estado deletado!";
-	}
-	
-	//CONSULTA POR CODIGO E RETORNA TODAS AS COLUNAS
+	/**
+	 * Faz a consulta em Estado com base no codigo de identificacao da tabela
+	 * @param cod - é o parametro para o codigo do estado
+	 * @return retorna a lista para o programa
+	 * @throws Exception
+	 */
 		public List<Estado> consultaPorCodigo(int cod) throws Exception{
 			List<Estado> list = new ArrayList<>();
 			Estado e = new Estado();
@@ -86,6 +61,13 @@ public class EstadoDAO {
 			ps.close();
 			return list;
 		}
+		/**
+		 * Este metodo recebe como parametro a sigla do estado, para devolver os valores exigidos  
+		 * @param sigla - parametro que devolve os valores que contem a sigla inserida pelo usuario
+		 * @return lista para o programa
+		 * @throws Exception
+		 */
+		
 		public List<Estado> consultaPorSigla(String sigla) throws Exception{
 			List<Estado> list = new ArrayList<>();
 			Estado e = new Estado();

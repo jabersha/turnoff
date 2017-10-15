@@ -10,42 +10,41 @@ import br.com.fiap.bean.Bairro;
 import br.com.fiap.bean.Cidade;
 import br.com.fiap.bean.Estado;
 import br.com.fiap.conexao.ConexaoFactory;
-
+/**
+ * 
+ * @author Vitor
+ * @version final
+ * @since 14-10-2017
+ * Esta classe é responsavel por realizar consultas na tabela Bairro pela identificacao de bairro e de cidade
+ */
 public class BairroDAO {
 
 private Connection con;
 	
+	/**
+	 * Este metodo realiza a conexao com SQL via classe ConexaoFactory pelo método Conectar
+	 * @throws Exception
+	 */
 	public BairroDAO() throws Exception {
 		con = new ConexaoFactory().Conectar();
 	}
-	
+	/**
+	 * O seguinte metodo fecha a conexao do banco de dados
+	 * @return
+	 * @throws Exception
+	 */
 	public String fechar() throws Exception {
 		con.close();
 		return "Fechado";
 	}
-	
-	public String atualizar(Bairro b) throws Exception {
-		PreparedStatement ps = con.prepareStatement
-		("UPDATE T_VFC_BAIRRO SET (nm_bairro = ?, cd_cidade = ?" +
-		 "WHERE cd_bairro = ?");
-		ps.setString(1, b.getNm_bairro());
-		ps.setInt(2, b.getCd_cidade());
-		ps.setInt(3, b.getCd_bairro());
-		
-		ps.executeUpdate();
-		ps.close();
-		return "Registro atualizado com sucesso!";
-	}
-	
-	public String deletar(Bairro b) throws Exception {
-		PreparedStatement ps = con.prepareStatement
-		("DELETE FROM T_VFC_BAIRRO WHERE cd_bairro = ?" );
-		ps.setInt(1, b.getCd_bairro());
-		ps.executeUpdate();
-		ps.close();
-		return "Deletado com sucesso!";
-	}
-	
+
+	/**
+	 * Este metodo como o nome diz, faz a consulta na tabela referente por codigo(chave primaria), ele recebe o codigo, e é devolvido os valores exigidos
+	 * baseados no identificacao da tabela
+	 * @param codigo - este parametro é recebido de fora, geralmente pela classe main, para ser usado como valor para a consulta. Que no caso é o codigo principal 
+	 * @return retorna a lista para o programa
+	 * @throws Exception
+	 */
 	public List<Bairro> consultarPorCodigo(int codigo) throws Exception {
 		List<Bairro> list = new ArrayList<>();
 		Bairro bai = new Bairro();
@@ -68,7 +67,12 @@ private Connection con;
 		ps.close();
 		return list;
 	}
-	
+	/**
+	 * Este metodo recebe a identificacao da chave da entidade pai, para retornar os valores de ambas as entidades, Cidade e Bairro
+	 * @param codigo - é o parametro que recebe o codigo da tabela cidade de um programa main ou de fora.
+	 * @return retorna a lista para o programa
+	 * @throws Exception
+	 */
 	public List<Bairro> consultaPorCodigoCidade(int codigo) throws Exception {
 		List<Bairro> list = new ArrayList<>();
 		Bairro bai = new Bairro();

@@ -1,5 +1,9 @@
 package br.com.fiap.dao;
-
+/**
+ * Esta classe faz a consulta na tabela Endereco do banco de dados
+ * @author Vitor
+ * @since 14-10-2017
+ */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,15 +20,30 @@ import br.com.fiap.conexao.ConexaoFactory;
 public class EnderecoDAO {
 	private Connection con;
 	
+	/**
+	 * Este metodo realiza a conexao com SQL via classe ConexaoFactory pelo método Conectar
+	 * @throws Exception
+	 */
 	public EnderecoDAO() throws Exception {
 		con = new ConexaoFactory().Conectar();
 	}
 	
+	/**
+	 * O seguinte metodo fecha a conexao do banco de dados
+	 * @return
+	 * @throws Exception
+	 */
 	public String fechar() throws Exception {
 		con.close();
 		return "Fechado";
 	}
-
+/**
+ * Este metodo realiza a consulta em Endereco utilizando o Cep(chave primaria) do endereco, realiza uma
+ * subconsulta em Bairro e Logradouro para trazer seus valores requisitados. 
+ * @param cep - parametro do CEP chave primaria da tabela Endereco 
+ * @return retorna esta lista para o programa
+ * @throws Exception
+ */
 	public List<Endereco> consultaPorCep(String cep) throws Exception {
 		List<Endereco> list = new ArrayList<>();
 		Endereco e = new Endereco();
@@ -64,5 +83,4 @@ public class EnderecoDAO {
 		ps.close();
 		return list;
 	}
-	
 }

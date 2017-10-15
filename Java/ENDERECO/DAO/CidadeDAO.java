@@ -9,29 +9,46 @@ import java.util.List;
 import br.com.fiap.bean.Cidade;
 import br.com.fiap.bean.Estado;
 import br.com.fiap.conexao.ConexaoFactory;
-
+/**
+ * Esta classe realiza as consultas baseadas na sigla, nome e codigo do estado
+ * @author Vitor
+ * @since 14-10-2017
+ */
 public class CidadeDAO {
 	private Connection con;
 	
+	/**
+	 * Este metodo realiza a conexao com SQL via classe ConexaoFactory pelo método Conectar
+	 * @throws Exception
+	 */
 	public CidadeDAO() throws Exception {
 		con = new ConexaoFactory().Conectar();
 	}
-	
+	/**
+	 * O seguinte metodo fecha a conexao do banco de dados
+	 * @return
+	 * @throws Exception
+	 */
 	public String fechar() throws Exception {
 		con.close();
 		return "Fechado";
 	}
 
-	//Faz a consulta na tabela cidade e depois faz subconsultap para buscar a sigla
+	/**
+	 * Este metodo recebe como parametro a sigla do estado, para devolver os valores exigidos  
+	 * @param sigla - parametro que devolve os valores que contem a sigla inserida pelo usuario
+	 * @return lista para o programa
+	 * @throws Exception
+	 */
 	public List<Cidade> consultaPorSigla(String sigla) throws Exception {
 		
 		List<Cidade> list = new ArrayList<>();
 		Cidade cid = new Cidade();
 		PreparedStatement ps = con.prepareStatement
 		("SELECT C.cd_cidade, C.nm_cidade, E.cd_estado, E.nm_estado, E.ds_sigla" + 
-		" FROM T_VFC_CIDADE C INNER JOIN T_VFC_ESTADO E ON (C.CD_ESTADO = E.CD_ESTADO)" + //Subquery em estado pela fk de cidade   
-		" WHERE E.ds_sigla = ? " + //Valor para a sigla
-		" ORDER BY CD_CIDADE"); //Ordena pelo código da cidade
+		" FROM T_VFC_CIDADE C INNER JOIN T_VFC_ESTADO E ON (C.CD_ESTADO = E.CD_ESTADO)"+   
+		" WHERE E.ds_sigla = ? " +
+		" ORDER BY CD_CIDADE");
 		ps.setString(1, sigla);
 		
 		ResultSet resultado = ps.executeQuery();
@@ -51,7 +68,12 @@ public class CidadeDAO {
 		ps.close();
 		return list;
 	}
-	
+	/**
+	 * Este metodo recebe um nome de Estado e devolve os valores exigidos
+	 * @param nome - o nome do estado
+	 * @return retorna a lista para o programa
+	 * @throws Exception
+	 */
 	public List<Cidade> consultaPorNomeEstado(String nome) throws Exception{
 
 		List<Cidade> list = new ArrayList<>();
@@ -82,6 +104,12 @@ public class CidadeDAO {
 		return list;
 	}
 	
+	/**
+	 * O seguinte metodo realiza a consulta que busca pela tabela de acordo com a identificacao da tabela
+	 * @param codigo - é achave primaria da tabela para a consulta
+	 * @return retorna a lista para o programa
+	 * @throws Exception
+	 */
 	public List<Cidade> consultaPorCodigo(int codigo) throws Exception {
 		List<Cidade> list = new ArrayList<>();
 		Cidade cid = new Cidade();
