@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.bean.Estado;
+import br.com.fiap.bean.Tipo_Log;
 import br.com.fiap.conexao.ConexaoFactory;
 
 public class EstadoDAO {
@@ -34,59 +35,7 @@ public class EstadoDAO {
 		
 		return "Inserido com sucesso!";
 	}
-	
-	//CONSULTA POR CODIGO E RETORNA TODAS AS COLUNAS
-	public Estado consultaPorCodigo(int cod) throws Exception{
-		Estado est = new Estado();
-		PreparedStatement ps = con.prepareStatement
-		("SELECT * FROM T_VFC_ESTADO WHERE cd_estado = ?");
-		ps.setInt(1,cod);
-		ResultSet rs = ps.executeQuery();
-		
-		if(rs.next()) {
-			System.out.println("NOME DO ESTADO: " + rs.getString("nm_estado"));
-			System.out.println("SIGLA DO ESTADO: " + rs.getString("ds_sigla"));
-			System.out.println("= = = = = = = = = = = = = = = = = = = = = = = = =");
-		}
-//		ps.execute();
-		ps.close();
-		rs.close();
-		return est;
-	}
-	// = = = CONSULTA POR SIGLA 
-//	public Estado consultaPorSigla(String sig) throws Exception {
-//		Estado est = new Estado();
-//		PreparedStatement ps = con.prepareStatement
-//			("SELECT * FROM T_VFC_ESTADO WHERE ds_sigla= ?");
-//		ps.setString(1,sig);
-//		ResultSet rs = ps.executeQuery();
-//			
-//			if(rs.next()) {
-//				System.out.println("NOME DO ESTADO: " + rs.getString("nm_estado"));
-//				System.out.println("SIGLA DO ESTADO: " + rs.getString("ds_sigla"));
-//				System.out.println("= = = = = = = = = = = = = = = = = = = = = = = = =");
-//			}
-//			
-//			ps.execute();
-//			ps.close();
-//			return est;
-//	}
-	
-	public List<Estado> consultaPorSigla(String sigla)throws Exception{
-		PreparedStatement stmt = con.prepareStatement("SELECT * FROM T_VFC_ESTADO WHERE DS_SIGLA = ?");
-		stmt.setString(1, sigla);
-		ResultSet rs = stmt.executeQuery();
-		List<Estado> list = new ArrayList<>();
-		while(rs.next()){
-			list.add(new Estado
-					(rs.getInt("CD_ESTADO"), 
-					rs.getString("NM_ESTADO"), 
-					rs.getString("DS_SIGLA")));
-		}
-		rs.close();
-		stmt.close();
-		return list;
-	}
+
 			
 	public String atualizar(Estado e) throws Exception {
 		PreparedStatement ps = con.prepareStatement
@@ -113,4 +62,51 @@ public class EstadoDAO {
 		
 		return "Estado deletado!";
 	}
+	
+	//CONSULTA POR CODIGO E RETORNA TODAS AS COLUNAS
+		public List<Estado> consultaPorCodigo(int cod) throws Exception{
+			List<Estado> list = new ArrayList<>();
+			Estado e = new Estado();
+			
+			PreparedStatement ps = con.prepareStatement
+			("SELECT cd_estado, nm_estado, ds_sigla" + 
+			" FROM T_VFC_ESTADO" +   
+			" WHERE cd_estado = ?"); 
+			ps.setInt(1, cod);
+			
+			ResultSet resultado = ps.executeQuery();
+			while(resultado.next()){
+				e = new Estado();
+				e.setCd_estado(resultado.getInt("cd_estado"));
+				e.setNm_estado(resultado.getString("nm_estado"));
+				e.setDs_sigla(resultado.getString("ds_sigla"));
+				list.add(e);
+			}
+			resultado.close();
+			ps.close();
+			return list;
+		}
+		public List<Estado> consultaPorSigla(String sigla) throws Exception{
+			List<Estado> list = new ArrayList<>();
+			Estado e = new Estado();
+			
+			PreparedStatement ps = con.prepareStatement
+			("SELECT cd_estado, nm_estado, ds_sigla" + 
+			" FROM T_VFC_ESTADO" +   
+			" WHERE ds_sigla = ?"); 
+			ps.setString(1, sigla);
+			
+			ResultSet resultado = ps.executeQuery();
+			while(resultado.next()){
+				e = new Estado();
+				e.setCd_estado(resultado.getInt("cd_estado"));
+				e.setNm_estado(resultado.getString("nm_estado"));
+				e.setDs_sigla(resultado.getString("ds_sigla"));
+				list.add(e);
+			}
+			resultado.close();
+			ps.close();
+			return list;
+		}
+	
 }
