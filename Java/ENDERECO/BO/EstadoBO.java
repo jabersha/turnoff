@@ -1,5 +1,7 @@
 package br.com.fiap.bo;
 
+import java.util.List;
+
 import br.com.fiap.bean.Estado;
 import br.com.fiap.dao.EstadoDAO;
 
@@ -15,23 +17,20 @@ public class EstadoBO {
 		EstadoDAO dao = new EstadoDAO();
 		Estado e = dao.consultaPorCodigo(c);
 		dao.fechar();
-
 		return e;
 	}
 
-	public static Estado consultaPorSigla(String s) throws Exception {
+	public static List<Estado>consultaPorSigla(String s) throws Exception {
 		EstadoDAO dao = new EstadoDAO();
-		Estado e = dao.consultaPorSigla(s);
+		List<Estado> lista= dao.consultaPorSigla(s);
 		dao.fechar();
-
-		return e;
+		return lista;
 	}
 
 	public static Estado excluir(int c) throws Exception {
 		EstadoDAO dao = new EstadoDAO();
 		Estado e = excluir(c);
 		dao.fechar();
-
 		return e;
 	}
 
