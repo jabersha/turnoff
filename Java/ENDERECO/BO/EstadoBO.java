@@ -13,11 +13,10 @@ public class EstadoBO {
 		return msg;
 	}
 
-	public static Estado consultarPorCodigo(int c) throws Exception {
+	public static List<Estado> consultarPorCodigo(int c) throws Exception {
 		EstadoDAO dao = new EstadoDAO();
-		Estado e = dao.consultaPorCodigo(c);
+		List<Estado> e = dao.consultaPorCodigo(c);
 		dao.fechar();
-
 		return e;
 	}
 
@@ -25,22 +24,7 @@ public class EstadoBO {
 		EstadoDAO dao = new EstadoDAO();
 		List<Estado> e = dao.consultaPorSigla(s);
 		dao.fechar();
-
 		return e;
 	}
 
-	public static Estado excluir(int c) throws Exception {
-		EstadoDAO dao = new EstadoDAO();
-		Estado e = excluir(c);
-		dao.fechar();
-
-		return e;
-	}
-
-	public static String atualizar(Estado e) throws Exception {
-		EstadoDAO dao = new EstadoDAO();
-		String x = dao.atualizar(e);
-		dao.fechar();
-		return x;
-	}
 }
