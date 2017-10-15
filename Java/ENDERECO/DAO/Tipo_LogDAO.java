@@ -3,7 +3,10 @@ package br.com.fiap.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import br.com.fiap.bean.Cidade;
 import br.com.fiap.bean.Estado;
 import br.com.fiap.bean.Tipo_Log;
 import br.com.fiap.conexao.ConexaoFactory;
@@ -39,7 +42,7 @@ public class Tipo_LogDAO {
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					System.out.println("CODIGO DO LOGRADOURO: " + rs.getInt("cd_tipo_log"));
-					System.out.println("DESCRIÇÃO DO LOGRADOURO: " + rs.getString("ds_tipo_log"));
+					System.out.println("DESCRI��O DO LOGRADOURO: " + rs.getString("ds_tipo_log"));
 					System.out.println("= = = = = = = = = = = = = = = = = = = = = = = = =");
 				}
 				ps.close();
@@ -47,19 +50,26 @@ public class Tipo_LogDAO {
 				return tl;
 	}
 	
-	public Tipo_Log consultarPorCodigo(int cod) throws Exception {
+	public List<Tipo_Log> consultarPorCodigo(int cod) throws Exception {
+		List<Tipo_Log> list = new ArrayList<>();
 		Tipo_Log tl = new Tipo_Log();
+		
 		PreparedStatement ps = con.prepareStatement
-		("SELECT * FROM T_VFC_TIPO_LOG WHERE cd_tipo_log = ?");
-		ps.setInt(1,cod);
-		ResultSet rs = ps.executeQuery();
-		if(rs.next()) {
-			System.out.println("DESCRIÇÃO DO LOGRADOURO: " + rs.getString("ds_tipo_log"));
-			System.out.println("= = = = = = = = = = = = = = = = = = = = = = = = =");
+		("SELECT cd_tipo_log, ds_tipo_log" + 
+		" FROM T_VFC_TIPO_LOG" +   
+		" WHERE cd_tipo_log = ?"); 
+		ps.setInt(1, cod);
+		
+		ResultSet resultado = ps.executeQuery();
+		while(resultado.next()){
+			tl = new Tipo_Log();
+			tl.setCd_tipo_log(resultado.getInt("cd_tipo_log"));
+			tl.setDs_tipo_log(resultado.getString("ds_tipo_log"));
+			list.add(tl);
 		}
+		resultado.close();
 		ps.close();
-		rs.close();
-		return tl;
+		return list;
 	}
 	
 	public Tipo_Log consultaPorDescricao(String des) throws Exception {

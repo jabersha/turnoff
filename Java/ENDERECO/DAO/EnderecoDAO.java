@@ -3,10 +3,14 @@ package br.com.fiap.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import br.com.fiap.bean.Bairro;
 import br.com.fiap.bean.Cidade;
 import br.com.fiap.bean.Endereco;
 import br.com.fiap.bean.Estado;
+import br.com.fiap.bean.Tipo_Log;
 import br.com.fiap.conexao.ConexaoFactory;
 
 public class EnderecoDAO {
@@ -21,59 +25,44 @@ public class EnderecoDAO {
 		return "Fechado";
 	}
 
-
-	public String insert(Endereco e) throws Exception {
-		PreparedStatement ps = con.prepareStatement
-		("INSERT INTO T_VFC_ENDERECO(nr_cep, cd_bairro, cd_tipo_log, ds_endereco)"
-				+"VALUES (?,?,?,?)");
-		ps.setString(1, e.getNr_cep());
-		ps.setInt(2, e.getCd_bairro());
-		ps.setInt(3, e.getCd_tipo_log());
-		ps.setString(4, e.getDs_endereco());
-		ps.execute();
-
-		ps.close();
-		return "Inserido com sucesso!";
-	}
-	
-	public String atualizar(Endereco e) throws Exception {
-		PreparedStatement ps = con.prepareStatement
-				("UPDATE T_VFC_ENDERECO SET cd_bairro = ?, cd_tipo_log = ?, ds_endereco = ?)" +
-				"WHERE nr_cep = ?");
-		ps.setInt(1, e.getCd_bairro());
-		ps.setInt(2, e.getCd_tipo_log());
-		ps.setString(3, e.getDs_endereco());
-		ps.setString(4, e.getNr_cep());
-		ps.executeUpdate();
-		ps.close();
-		return "Registro atualizado com sucesso!";
-	}
-	
-	public String deletar(int codigo) throws Exception {
+	public List<Endereco> consultaPorCep(String cep) throws Exception {
+		List<Endereco> list = new ArrayList<>();
 		Endereco e = new Endereco();
 		PreparedStatement ps = con.prepareStatement
-				("DELETE FROM T_VFC_ENDERECO WHERE nr_cep = ?");
-		ps.setString(1, e.getNr_cep());
-		ps.executeUpdate();
-		ps.close();
-		return "Registro deletado com sucesso!";
-	}
-	
-	public Endereco consultaPorCep(String cep) throws Exception {
-		Endereco e = new Endereco();
-		PreparedStatement ps = con.prepareStatement
-		("SELECT * FROM T_VFC_ENDERECO WHERE = ?");
+		("SELECT E.NR_CEP , E.CD_BAIRRO , E.CD_TIPO_LOG, E.DS_ENDERECO, TP.DS_TIPO_LOG, B.NM_BAIRRO" +
+		"FROM T_VFC_ENDERECO E INNER JOIN T_VFC_TIPO_LOG TP ON (E.CD_TIPO_LOG = TP.CD_TIPO_LOG)" + 
+		"INNER JOIN T_VFC_BAIRRO ON (E.CD_BAIRRO = B.CD_BAIRRO)" + 
+		"WHERE NR_CEP = ?;");
 		ps.setString(1, e.getNr_cep());
 		ResultSet rs = ps.executeQuery();
 		
-		if (rs.next()) {
-			System.out.println("DESCRICAO DO ENDERECO: " + e.getDs_endereco());
-			System.out.println("CODIGO DO BAIRRO DO ENDERECO: " + e.getCd_bairro());
-			System.out.println("CODIGO DO TIPO DO LOGRADOURO DO ENDERECO: " + e.getCd_tipo_log());
+		ResultSet resultado = ps.executeQuery();
+		while(resultado.next()){
 			
+			e = new Endereco();
+			e.setNr_cep(resultado.getString("nr_cep"));
+			e.setCd_bairro(resultado.getInt("cd_bairro"));
+			e.setCd_tipo_log(resultado.getInt("cd_tipo_log"));
+			e.setDs_endereco(resultado.getString("ds_endereco"));
+			
+			BairroDAO bDao = new BairroDAO();
+			List<Bairro> listaBairro = 
+			bDao.consultarPorCodigo(resultado.getInt("cd_bairro"));
+			bDao.fechar();
+			e.setListaBairro(listaBairro);
+			
+			Tipo_LogDAO tDao = new Tipo_LogDAO();
+			List<Tipo_Log> listaTipoLog =
+			tDao.consultarPorCodigo(resultado.getInt("cd_tipo_log"));
+			tDao.fechar();
+			e.setListaTipoLog(listaTipoLog);
+			
+			
+			list.add(e);
 		}
 		ps.execute();
 		ps.close();
-		return e;
+		return list;
 	}
+	
 }
