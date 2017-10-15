@@ -17,20 +17,23 @@ public class EstadoBO {
 		EstadoDAO dao = new EstadoDAO();
 		Estado e = dao.consultaPorCodigo(c);
 		dao.fechar();
+
 		return e;
 	}
 
-	public static List<Estado>consultaPorSigla(String s) throws Exception {
+	public static List<Estado> consultaPorSigla(String s) throws Exception {
 		EstadoDAO dao = new EstadoDAO();
-		List<Estado> lista= dao.consultaPorSigla(s);
+		List<Estado> e = dao.consultaPorSigla(s);
 		dao.fechar();
-		return lista;
+
+		return e;
 	}
 
 	public static Estado excluir(int c) throws Exception {
 		EstadoDAO dao = new EstadoDAO();
 		Estado e = excluir(c);
 		dao.fechar();
+
 		return e;
 	}
 
