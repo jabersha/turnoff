@@ -19,4 +19,11 @@ public class CidadeBO {
 		dao.fechar();
 		return x;
 	}
+	
+	public static List<Cidade> consultaPorEstado(String sigla) throws Exception {
+		CidadeDAO dao = new CidadeDAO();
+		List<Cidade> x = dao.consultaPorNomeEstado(sigla);
+		dao.fechar();
+		return x;
+	}
 }
