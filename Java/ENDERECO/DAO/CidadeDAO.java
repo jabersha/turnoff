@@ -21,22 +21,6 @@ public class CidadeDAO {
 		con.close();
 		return "Fechado";
 	}
-	//Insere em Cidade  fazendo uma consulta em estado aonde o código for a entrada do usuário
-	public String insertEstadoCidade(Cidade c) throws Exception {
-		
-		CidadeDAO dao = new CidadeDAO();
-		
-		PreparedStatement ps = con.prepareStatement
-		("INSERT INTO T_VFC_CIDADE (cd_cidade, nm_cidade, cd_estado)" 
-		+"VALUES (?,?,(SELECT cd_estado FROM T_VFC_ESTADO WHERE cd_estado = ?))"); 
-		ps.setInt(1, c.getCd_cidade());
-		ps.setString(2, c.getNm_cidade());
-		ps.setInt(3, c.getCd_estado());
-		ps.execute();
-		
-		ps.close();
-		return "Inserido com sucesso!";
-	}
 
 	//Faz a consulta na tabela cidade e depois faz subconsultap para buscar a sigla
 	public List<Cidade> consultaPorSigla(String sigla) throws Exception {
@@ -91,6 +75,29 @@ public class CidadeDAO {
 			eDao.fechar();
 			cid.setListaEstado(listaEstado);
 			
+			list.add(cid);
+		}
+		resultado.close();
+		ps.close();
+		return list;
+	}
+	
+	public List<Cidade> consultaPorCodigo(int codigo) throws Exception {
+		List<Cidade> list = new ArrayList<>();
+		Cidade cid = new Cidade();
+		
+		PreparedStatement ps = con.prepareStatement
+		("SELECT cd_cidade, nm_cidade, cd_estado" + 
+		" FROM T_VFC_CIDADE" +   
+		" WHERE cd_cidade = ?"); 
+		ps.setInt(1, codigo);
+		
+		ResultSet resultado = ps.executeQuery();
+		while(resultado.next()){
+			cid = new Cidade();
+			cid.setCd_cidade(resultado.getInt("cd_cidade"));
+			cid.setNm_cidade(resultado.getString("nm_cidade"));
+			cid.setCd_estado(resultado.getInt("cd_estado"));
 			list.add(cid);
 		}
 		resultado.close();
